@@ -25,3 +25,8 @@ app.get("/api/notes", function (req, res) {
 app.get("*", function (req, res) {
     res.sendFile(path.join(__dirname, 'public', "index.html"));
 });
+// should recieve a new note to save request,
+//add to 'db.json' file and then return new note to user
+app.post("/api/notes", function (req, res) {
+    //parse bd.json to get object
+    let notesArray = JSON.parse(fs.readFileSync("./db/db.json", "utf8"));
