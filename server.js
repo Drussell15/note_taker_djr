@@ -14,3 +14,14 @@ app.use(express.urlencoded({ extended: true }));
 app.use(expess.json());
 
 //make routes
+//change to notes page when start button clicked
+app.get("/notes", function (req, res) {
+    res.sendFile(path.join(__dirname, 'public', "index.html"));
+});
+app.get("/api/notes", function (req, res) {
+    res.sendFile(path.join(__dirname, "/db/db.json"));
+});
+//default is homepage- this needs to be last in order
+app.get("*", function (req, res) {
+    res.sendFile(path.join(__dirname, 'public', "index.html"));
+});
