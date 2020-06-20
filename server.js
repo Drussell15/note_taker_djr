@@ -30,3 +30,11 @@ app.get("*", function (req, res) {
 app.post("/api/notes", function (req, res) {
     //parse bd.json to get object
     let notesArray = JSON.parse(fs.readFileSync("./db/db.json", "utf8"));
+
+    //body of request= the new notepage
+    let newNote = req.body;
+
+    //give the note an ID by doing a for loop
+    for (let i = 0; i < notesArray.length; i++) {
+        newNote.id = "" + [i]
+    }
