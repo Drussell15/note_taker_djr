@@ -49,3 +49,9 @@ app.post("/api/notes", function (req, res) {
     res.json(notesArray);
 });
 //delete note by ID//
+app.delete("/api/notes/:id:", function (req, res) {
+    //parse the db.json to get object
+    let notesArray = JSON.parse(fs.readFileSync("./db/db.json", "utf8"));
+
+    let noteID = req.params.id;
+
