@@ -27,6 +27,7 @@ app.get("*", function (req, res) {
 });
 // should recieve a new note to save request,
 //add to 'db.json' file and then return new note to user
+
 app.post("/api/notes", function (req, res) {
     //parse bd.json to get object
     let notesArray = JSON.parse(fs.readFileSync("./db/db.json", "utf8"));
@@ -38,3 +39,13 @@ app.post("/api/notes", function (req, res) {
     for (let i = 0; i < notesArray.length; i++) {
         newNote.id = "" + [i]
     }
+    //push it to the empty object
+    notesArray.push(newNote);
+
+    //write the new file to db.json, stringify it back to string to go to server
+    fs.writeFileSync(".db/db.json", JSON.stringify(notesArray));
+    console.log("note saved.");
+
+    res.json(notesArray);
+});
+//delete note by ID//
